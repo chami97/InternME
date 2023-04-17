@@ -1,0 +1,41 @@
+version: "3"
+services:
+  intern-server:
+    image: intern-server
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/internship?createDatabaseIfNotExist=true
+    networks:
+      - intern-app
+    depends_on:
+      - mysql
+  intern-client:
+    image: intern-client
+    stdin_open: true
+    ports: 
+      - "3000:3000"
+    restart: always
+    networks:
+      - intern-app
+    depends_on:
+      - intern-server
+    environment:
+      - WATCHPACK_POLLING=true
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: internship
+      MYSQL_ROOT_PASSWORD: navinduk
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - intern-app
+volumes:
+  db-data:
+networks:
+  intern-app:
+    driver: bridge
