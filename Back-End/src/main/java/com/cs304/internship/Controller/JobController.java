@@ -3,6 +3,7 @@ package com.cs304.internship.Controller;
 import com.cs304.internship.Dto.CompanyDto;
 import com.cs304.internship.Entity.Company;
 import com.cs304.internship.Entity.Job;
+import com.cs304.internship.Repo.JobRepo;
 import com.cs304.internship.Service.CompanyService;
 import com.cs304.internship.Service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;

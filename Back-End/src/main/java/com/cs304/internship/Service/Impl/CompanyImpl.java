@@ -34,4 +34,10 @@ public class CompanyImpl implements CompanyService {
         Optional<Company> cm = companyRepo.findById(cid);
         return cm.get();
     }
+
+    @Override
+    public Company getCompanyByUserId(int uid) {
+        Company cm = companyRepo.findCompanyByUserId(uid);
+        return cm;
+    }
 }

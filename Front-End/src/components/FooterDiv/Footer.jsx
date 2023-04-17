@@ -59,7 +59,7 @@ const Footer = () => {
       <div className="grid w-1/5">
         <span className="divTitle text-[18px] font-semibold pb-[1.5rem] text-[#fff]">Contact Info</span>
         <div>
-          <small className="text-[14px] text-white">internme.com</small>
+          <small className="text-[14px] text-white">findyourinternship.com</small>
         </div>
 
       </div>

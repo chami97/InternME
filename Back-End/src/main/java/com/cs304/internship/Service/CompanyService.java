@@ -9,4 +9,5 @@ public interface CompanyService {
 
     public Company getCompanyById(int cid);
 
+    Company getCompanyByUserId(int uid);
 }

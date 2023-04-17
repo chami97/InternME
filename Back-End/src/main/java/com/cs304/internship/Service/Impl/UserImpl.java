@@ -1,5 +1,6 @@
 package com.cs304.internship.Service.Impl;
 
+import com.cs304.internship.Dto.UserRespDto;
 import com.cs304.internship.Service.UserService;
 
 import java.util.Optional;
@@ -45,7 +46,7 @@ public class UserImpl implements UserService {
             if (isPwdRight) {
                 Optional<User> user = userRepo.findOneByEmailAndPassword(loginDto.getEmail(), encodedUserPassword);
                 if (user.isPresent()) {
-                    return new LoginResponse("Login Success", true, new User(user1.getId(), user1.getFirstName(), user1.getLastName(), user1.getEmail(), user1.getMobileNumber()));
+                    return new LoginResponse("Login Success", true, new UserRespDto(user1.getId(), user1.getFirstName(), user1.getLastName(), user1.getEmail(), user1.getMobileNumber()));
                 } else {
                     return new LoginResponse("Login Failed", false, null);
                 }

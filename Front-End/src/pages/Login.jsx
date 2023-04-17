@@ -8,16 +8,17 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
-    axios
+    await axios
       .post("http://localhost:8080/api/v1/user/login", {
         email: e.target.email.value,
         password: e.target.password.value,
       })
       .then((res) => {
         if (res.data.status) {
-          localStorage.setItem('user',JSON.stringify(res.data.user))
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          fetchCompany(res.data.user.id);
           navigate("/");
         } else
           setError(
@@ -25,6 +26,17 @@ const Login = () => {
           );
       });
   }
+
+  const fetchCompany = async (uid) => {
+    await axios
+      .get(`http://localhost:8080/api/v1/company/user/${uid}`)
+      .then((res) => {
+        if (res.data) {
+          delete res.data.user;
+          localStorage.setItem("company", JSON.stringify(res.data));
+        }
+      });
+  };
 
   return (
     <>
