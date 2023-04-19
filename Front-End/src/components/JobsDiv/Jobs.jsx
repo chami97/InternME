@@ -81,6 +81,24 @@ const Jobs = ({ jobs, sortDateAsc, filterWorking }) => {
                   >
                     Apply Now
                   </button>
+                      <br/>
+                  <button
+                    className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] 
+          font-semibold text-textColor hover:bg-blue-500 hover:text-gray-700 group-hover/item:text-textColor group-hover:text-white"
+                    onClick={() => {
+                      setOpen(true);
+                      openApplyModel({
+                        id,
+                        title,
+                        description,
+                        workingMode,
+                        postedDate,
+                        company,
+                      });
+                    }}
+                  >
+                    Save For Later
+                  </button>
                 </div>
               );
             }

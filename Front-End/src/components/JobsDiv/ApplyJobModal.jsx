@@ -37,7 +37,7 @@ export default function ApplyJobModal(props) {
                 </Dialog.Title>
                   <div
                     key={props?.job?.id}
-                    className="group group/item singleJob w-[260px] p-[20px]"
+                    className="group group/item singleJob p-[20px]"
                   >
                     <span className="flex justify-between items-center gap-1">
                       <h1 className="text-[17px] font-semibold text-[#0c0b0b]">

@@ -7,7 +7,20 @@ import axios from "axios";
 const Register = () => {
   const [isPartner, setIsPartner] = useState(false);
   const [pageNo, setPage] = useState(1);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    mobileNumber: "",
+  });
+  const [company, setCompany] = useState({
+    companyName: "",
+    companyAddress: "",
+    website: "",
+    brNumber: "",
+    industry: "",
+  });
   const [submitCompany, setSubmitCompany] = useState(false);
 
   const partnerTicked = (e) => {
@@ -37,7 +50,7 @@ const Register = () => {
         .catch((err) => {
           alert("Error registering");
         });
-    }else if (submitCompany && pageNo === 2) {
+    } else if (submitCompany && pageNo === 2) {
       await axios
         .post("http://localhost:8080/api/v1/user/save", {
           firstName: user.firstName,
@@ -72,7 +85,12 @@ const Register = () => {
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
-              <img className="h-24 w-auto" src={logo} alt="Your Company" />
+              <img
+                onClick={() => navigate("/")}
+                className="h-24 w-auto cursor-pointer"
+                src={logo}
+                alt="Your Company"
+              />
               <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
                 {pageNo === 1 ? "Register" : "Enter Company Details"}
               </h2>
@@ -95,6 +113,7 @@ const Register = () => {
                             id="fName"
                             name="firstName"
                             type="text"
+                            value={user?.firstName}
                             onChange={(e) =>
                               setUser({ ...user, firstName: e.target.value })
                             }
@@ -115,6 +134,7 @@ const Register = () => {
                           <input
                             id="lName"
                             name="lastName"
+                            value={user?.lastName}
                             onChange={(e) =>
                               setUser({ ...user, lastName: e.target.value })
                             }
@@ -137,6 +157,7 @@ const Register = () => {
                             id="mobileNumber"
                             name="mobileNumber"
                             type="text"
+                            value={user?.mobileNumber}
                             onChange={(e) =>
                               setUser({ ...user, mobileNumber: e.target.value })
                             }
@@ -158,6 +179,7 @@ const Register = () => {
                             id="email"
                             name="email"
                             type="email"
+                            value={user?.email}
                             onChange={(e) =>
                               setUser({ ...user, email: e.target.value })
                             }
@@ -180,6 +202,7 @@ const Register = () => {
                             id="password"
                             name="password"
                             type="password"
+                            value={user?.password}
                             onChange={(e) =>
                               setUser({ ...user, password: e.target.value })
                             }
@@ -189,6 +212,30 @@ const Register = () => {
                           />
                         </div>
                       </div>
+
+                      <div className="space-y-1">
+                        <label
+                          htmlFor="password"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Confirm Password
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={user?.password}
+                            onChange={(e) =>
+                              setUser({ ...user, password: e.target.value })
+                            }
+                            autoComplete="current-password"
+                            required
+                            className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          />
+                        </div>
+                      </div>
+                      
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
@@ -224,6 +271,13 @@ const Register = () => {
                             name="companyName"
                             type="text"
                             required
+                            value={company?.companyName}
+                            onChange={(e) =>
+                              setCompany({
+                                ...company,
+                                companyName: e.target.value,
+                              })
+                            }
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           />
                         </div>
@@ -242,6 +296,13 @@ const Register = () => {
                             name="industry"
                             type="text"
                             required
+                            value={company?.industry}
+                            onChange={(e) =>
+                              setCompany({
+                                ...company,
+                                industry: e.target.value,
+                              })
+                            }
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           />
                         </div>
@@ -259,6 +320,13 @@ const Register = () => {
                             id="address"
                             name="companyAddress"
                             type="text"
+                            value={company?.companyAddress}
+                            onChange={(e) =>
+                              setCompany({
+                                ...company,
+                                companyAddress: e.target.value,
+                              })
+                            }
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           />
                         </div>
@@ -275,6 +343,13 @@ const Register = () => {
                           <input
                             id="website"
                             name="website"
+                            value={company?.website}
+                            onChange={(e) =>
+                              setCompany({
+                                ...company,
+                                website: e.target.value,
+                              })
+                            }
                             type="text"
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           />
@@ -292,6 +367,13 @@ const Register = () => {
                           <input
                             id="brNumber"
                             name="brNumber"
+                            value={company?.brNumber}
+                            onChange={(e) =>
+                              setCompany({
+                                ...company,
+                                brNumber: e.target.value,
+                              })
+                            }
                             type="text"
                             required
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"

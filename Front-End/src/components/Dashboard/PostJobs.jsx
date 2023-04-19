@@ -54,7 +54,9 @@ const PostJobs = (props) => {
                   className="text-[13px] text-[#95959] pt-[20px] border-t-[2px] mt-[20px] mb-3 
           group-hover:text-white"
                 >
-                  {description}
+                  {description.length > 100
+                      ? description.substring(0, 100 - 3) + "..."
+                      : description}
                 </p>
 
                 <div className="flex">
